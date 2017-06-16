@@ -1,9 +1,14 @@
 var links = document.querySelectorAll("a");
 for (index = 0; index < links.length; index++) {
-    console.log(links[index].href);
-    links[index].addEventListener("click", function(event) {
-        window.open(this.href);
-        console.log("event handled");
+    links[index].addEventListener("click", function (event) {
+        console.log(this);
+        console.log(String(this.href) + " been clicked");
+        var newtab = window.open(this.href, '_blank');
+        newtab.focus();
+        console.log("tab focus been switch");
+
+        // chrome.tabs.create(createProperties, function () {});
         event.preventDefault();
     })
 }
+console.log(String(links.length) + "Total tabs been listend");

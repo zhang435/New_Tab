@@ -6,7 +6,11 @@
     "permissions": [
         "activeTab",
         "tabs",
-        "activeTab"
+        "activeTab",
+        "http://*/",
+        "https://*/",
+        "chrome-search://*/",
+        "*://*"
     ],
     "background": {
         "scripts": ["background.js"],

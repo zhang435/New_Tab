@@ -1,0 +1,6 @@
+when user open a web-page
+    the backgound.js will run active main.js
+    main will read all <a> tag in the webpage and add add click event listener
+
+    new webpage will active background and so on
+
