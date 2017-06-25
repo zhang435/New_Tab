@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="25ff0c76-8dad-4a0d-8dac-4c471020215b" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/main.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/background.js" afterPath="$PROJECT_DIR$/background.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manifest.json" afterPath="$PROJECT_DIR$/manifest.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/popup.js" afterPath="$PROJECT_DIR$/popup.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/remove_listener.js" afterPath="$PROJECT_DIR$/remove_listener.js" />
-    </list>
+    <list default="true" id="25ff0c76-8dad-4a0d-8dac-4c471020215b" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -31,8 +24,8 @@
             <state relative-caret-position="414">
               <caret line="18" column="40" lean-forward="true" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
               <folding>
-                <marker date="1498350978000" expanded="false" signature="486:771" ph="..." />
-                <marker date="1498350978000" expanded="true" signature="998:1336" ph="..." />
+                <marker date="1498352751000" expanded="false" signature="486:771" ph="..." />
+                <marker date="1498352751000" expanded="true" signature="998:1336" ph="..." />
               </folding>
             </state>
           </provider>
@@ -52,7 +45,7 @@
         <entry file="file://$PROJECT_DIR$/remove_listener.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="207">
-              <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+              <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -318,12 +311,12 @@
       <workItem from="1497553641969" duration="41000" />
       <workItem from="1497553700303" duration="404000" />
       <workItem from="1497554147126" duration="6749000" />
-      <workItem from="1497624148967" duration="17722000" />
+      <workItem from="1497624148967" duration="17857000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25301000" />
+    <option name="totallyTimeSpent" value="25436000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -398,8 +391,8 @@
         <state relative-caret-position="207">
           <caret line="9" column="33" lean-forward="true" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="33" />
           <folding>
-            <marker date="1498350978000" expanded="false" signature="486:771" ph="..." />
-            <marker date="1498350978000" expanded="true" signature="998:1336" ph="..." />
+            <marker date="1498352751000" expanded="false" signature="486:771" ph="..." />
+            <marker date="1498352751000" expanded="true" signature="998:1336" ph="..." />
           </folding>
         </state>
       </provider>
@@ -478,8 +471,8 @@
         <state relative-caret-position="135">
           <caret line="9" column="1" lean-forward="true" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
           <folding>
-            <marker date="1498350978000" expanded="false" signature="486:771" ph="..." />
-            <marker date="1498350978000" expanded="true" signature="998:1336" ph="..." />
+            <marker date="1498352751000" expanded="false" signature="486:771" ph="..." />
+            <marker date="1498352751000" expanded="true" signature="998:1336" ph="..." />
           </folding>
         </state>
       </provider>
@@ -582,8 +575,8 @@
         <state relative-caret-position="414">
           <caret line="18" column="40" lean-forward="true" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
           <folding>
-            <marker date="1498350978000" expanded="false" signature="486:771" ph="..." />
-            <marker date="1498350978000" expanded="true" signature="998:1336" ph="..." />
+            <marker date="1498352751000" expanded="false" signature="486:771" ph="..." />
+            <marker date="1498352751000" expanded="true" signature="998:1336" ph="..." />
           </folding>
         </state>
       </provider>
@@ -625,7 +618,7 @@
     <entry file="file://$PROJECT_DIR$/remove_listener.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
-          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding />
         </state>
       </provider>

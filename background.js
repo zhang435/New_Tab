@@ -4,37 +4,28 @@ function print(s) {
     bkg.console.log(s);
 }
 
+// add listener to all event
 var listen_all_links = function () {
     chrome.tabs.executeScript({
-        file: 'addlistener.js'
+        file: 'add_listener.js'
     }, function (tab) {
-        print("running addlistener.js");
+        print("running add_listener.js");
     });
 };
 
+// remove all listener,
 var remove_listener = function () {
     chrome.tabs.executeScript({
         file: 'remove_listener.js'
     }, function (tab) {
-        print("running addlistener.js");
+        print("running remove_listener.js");
     });
 };
 
-//
-// chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
-//     print("????");
-//     if (changeInfo.status === 'complete') {
-//         print("page success loaded");
-//             if(status === "running") {
-//             listen_all_links();
-//         }
-//     }
-// });
-// FIXME: when user click, there is chance that mutiple tabs shows, the way to slove if check if the current loading tab has the same url as the one we tyring to load
+
+// active listner when page is laoded
 var prev = "";
-print("---------------------------------");
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-    print("======")
     if (changeInfo.status === 'complete' && !(prev === tab.url)) {
         print("prev link" + prev);
         prev = tab.url;
@@ -44,9 +35,10 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
         }
     }
 });
-print("---------------------------------");
+
+// change the status of popup.html
 chrome.runtime.onMessage.addListener(function(message,sender,sendResponse){
-    print("change status from" + status);
+    print("change status to " + status);
     if (message.text === "popup clicked") {
         status = message.status;
     }

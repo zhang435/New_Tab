@@ -7,11 +7,14 @@
     <body>
         <h1>
             <p>this is the fake content</p>
-                asfsdfsd
-                with some links
-            <a href="content.html"> 1</a>
-            <a href="content1.html"> 2</a>
-            <a href="content2.html"> 3</a>
+              <p></p>
+            <a href="content.html"> this tab will open in the new tab during the running status</a>
+            <p></p>
+            <a href="content1.html" target="_blank">this link will open page in new tab does not matter it open or not</a>
         </h1>
     </body>
+
+    <script>
+    console.log(document.querySelectorAll("a")[1].getAttribute("target") !== ("_blank"))
+    </script>
 </html>

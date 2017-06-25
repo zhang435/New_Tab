@@ -11,6 +11,7 @@
         "https://*/",
         "chrome-search://*/",
         "*://*",
+        "<all_urls>",
         "webNavigation"
     ],
     "background": {
@@ -20,16 +21,10 @@
     "browser_action": {
         "default_title": "Set this page's color.",
         "default_icon": "icon.png",
-        "default_popup": "popup.html"
-    },
-    "content_scripts" : [
-        {
-            "all_frames" : false,
-            "run_at" : "document_end",
-            "matches" : [ "http://*/*" ],
-            "js" : [
-                "addlistener.js"
-            ]
-        }
-    ]
+        "default_popup": "popup.html",
+        "scripts": ["add_listener.js",
+                    "remove_listener.js",
+                    "popup.js"
+        ]
+    }
 }

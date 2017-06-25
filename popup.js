@@ -3,26 +3,26 @@
 var btn = document.getElementById("status");
 var bkg = chrome.extension.getBackgroundPage();
 btn.innerHTML = bkg.status;
-bkg.print(btn.innerHTML);
+bkg.print("current status is "+btn.innerHTML);
 btn.addEventListener("click", function(){
     var style = btn.classList[1];
     // if current status is running , then stop the extension
     if(btn.innerHTML === "running"){
-        btn.classList.add("btn-warning");
+        // btn.classList.add("btn-warning");
         bkg.remove_listener();
         btn.innerHTML = "suspend";
         bkg.status = "suspend";
         bkg.print("suspend");
     } else {
-        btn.classList.add("btn-primary");
+        // btn.classList.add("btn-primary");
         btn.innerHTML = "running";
-        bkg.print("!!!!!!!!!!!!!!!");
         bkg.listen_all_links();
-        bkg.print("!!!!!!!!!!!!!!!");
         bkg.status = "running";
         bkg.print("running");
     }
     chrome.runtime.sendMessage({text: "popup clicked", status: btn.innerHTML});
     btn.classList.remove(style);
-
+    btn.classList.add(btn.innerHTML === "running" ? "btn-primary" : "btn-warning")
 });
+bkg.print("I am changing the color");
+btn.classList.add(btn.innerHTML === "running" ? "btn-primary" : "btn-warning")
