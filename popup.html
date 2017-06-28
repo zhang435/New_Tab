@@ -1,19 +1,19 @@
 <html>
 <style>
-body {
+/*body {
     overflow: hidden;
     margin: 0px;
     padding: 0px;
     background: white;
     height: 100px;
     width: 400px;
-}
+}*/
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
 </script>
 <head>
-    <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.2/css/bulma.min.css">
+
 
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -21,7 +21,18 @@ body {
 </head>
 <body>
 
-    <button id = "status" type="button" class="btn"></button>
+<nav class="breadcrumb">
+            <button id = "mode1" type="button" class="button is-primary is-outlined">OR</button>
+        <button id = "mode2" type="button" class="button is-info is-outlined is-4">ALL</button>
+        <button id = "mode3" type="button" class="button is-success is-outlined">XOR</button>
+</nav>
+
+
+<div class="columns">
+    <div class="column is-three-quarters">
+    <p id = "status" type="button" class="notification is-info is-center"></p>
+    </div>
+</div>
 </body>
 <script src="popup.js"></script>
 </html>
