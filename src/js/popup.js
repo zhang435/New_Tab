@@ -1,37 +1,44 @@
 var btn = document.getElementById("status");
-var mode = document.getElementById("mode");
-
 var bkg = chrome.extension.getBackgroundPage();
 var currentmode = bkg.mode;
 btn.innerHTML = bkg.status;
+var modecontent = {
+    "OR": "New tab will only `run` the link you want",
+    "XOR": "New tab will NOT `run` the link you add",
+    "ALL": "New tab will `run` EVERYTHING"
+};
+var mode = new Mode(currentmode, modecontent[currentmode]);
 
+
+
+// assign the active anv bar
+if (!document.getElementById(currentmode).classList.contains("is-active")) {
+    document.getElementById(currentmode).classList.add("is-active");
+}
+
+// assign the mode content
+mode.fill_html();
+
+//////////////////////////////////////
 // check if the back memory been inited yet
 // if it been init , then it eill get coorect mode
 // if it is the first time using it, it will be the default XOR mode
-
-mode.src = "../html/"+currentmode.toLowerCase()+"html";
-
-// assign the active anv bar
-if(!document.getElementById(currentmode).classList.contains("is-active")){
-    document.getElementById(currentmode).classList.add("is-active");
-}
-// switch mode tab
 Array.from(document.getElementsByTagName("a")).forEach(function (element) {
     element.addEventListener("click", function () {
-        bkg.print(element);
         document.getElementById(currentmode).classList.remove("is-active");
         element.classList.add("is-active");
         // update mode in the memory
-        chrome.storage.sync.set({ "mode" : element.innerHTML }, function() {
+        chrome.storage.sync.set({"mode": element.innerHTML}, function () {
             bkg.mode = element.innerHTML;
             currentmode = bkg.mode;
-            console.log("update mode : "+ element.innerHTML );
-            mode.src = "../html/"+currentmode.toLowerCase()+"html";
+            console.log("update mode : " + element.innerHTML);
+            mode = new Mode(currentmode, modecontent[currentmode]);
+            mode.fill_html()
         });
     });
 });
 
-
+bkg.print(mode.src);
 
 
 //////////////////////////////////
@@ -57,5 +64,34 @@ btn.addEventListener("click", function () {
     btn.classList.remove(style);
     btn.classList.add(btn.innerHTML === "running" ? "is-primary" : "is-warning");
 });
-bkg.print("switch color : status button");
 btn.classList.add(btn.innerHTML === "running" ? "is-primary" : "is-warning");
+
+
+//////////////////////////////////////
+// get the new link that will be added
+var add  = document.getElementById("addurl");
+add.addEventListener("click",function (elem) {
+    var new_url = document.getElementById("url").value;
+
+    // get prev value
+    chrome.storage.sync.get(currentmode, function(items) {
+        // chrome.storage.sync.clear();
+        var ans = {};
+
+        // if the item has not been create yet
+        if (items[currentmode] ===  undefined){
+            // by doing this , we can sue variable as the key
+            ans[currentmode] = [new_url];
+            chrome.storage.sync.get(currentmode);
+            return;
+        }
+
+        // add new url
+        items[currentmode].push(new_url);
+        ans[currentmode] = items[currentmode];
+
+        chrome.storage.sync.set(ans, function () {
+            bkg.print("append value " +new_url+ " into "+ currentmode +" URL array");
+        });
+    });
+});

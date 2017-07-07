@@ -11,19 +11,14 @@ function print(s) {
 chrome.storage.sync.get("mode", function(items) {
     print("?");
     if (items.mode) {
-        print("in get right before " + mode);
         mode = items.mode;
-        print("right after " + mode);
     }else{
-        chrome.storage.sync.set({ "mode" : "XOR" }, function() {
-            mode = "XOR";
+        chrome.storage.sync.set({ "mode" : "OR" }, function() {
+            mode = "OR";
         });
     }
+    print(mode);
 });
-
-print("!" + mode);
-
-
 
 // add listener to all event
 var listen_all_links = function () {
@@ -44,11 +39,18 @@ var remove_listener = function () {
 };
 
 // active listner when page is laoded
+// the reason for prev is because we updated will run everytime when each frame been load
+// so mutiplte tabs will open , to prevent this, we need to make sure we do not open already opened tab
 var prev = "";
+// when user realod the page
+var prevtabid = "";
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-    if (changeInfo.status === 'complete' && !(prev === tab.url)) {
-        print("prev link" + prev);
+    print("prevtabs is" + prevtabid);
+    print("current id is" + tabId);
+    if (changeInfo.status === 'complete' && (!(prev === tab.url) || prevtabid === tabId)) {
+        print("prev link: " + prev);
         prev = tab.url;
+        prevtabid = tabId;
         print("page success loaded");
         if(status === "running"){
             listen_all_links();

@@ -3,22 +3,21 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
 </script>
 <head>
+    <style>
+
+    </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.2/css/bulma.min.css">
 
-
-  <!-- Latest compiled and minified JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
 </head>
-<body>
+<body style="width:400px;">
 
 <nav class="nav has-shadow">
     <div class="container">
         <div class="nav-left">
             <p style="width: 5%" class="nav-item">&nbsp</p>
             <p style="width: 5%" class="nav-item">&nbsp</p>
-            <a id="XOR" style="font-size: medium" class="nav-item is-tab">XOR</a>
             <a id="OR"  style="font-size: medium" class="nav-item is-tab ">OR</a>
+            <a id="XOR" style="font-size: medium" class="nav-item is-tab">XOR</a>
             <a id="ALL" style="font-size: medium" class="nav-item is-tab ">ALL</a>
         </div>
         <div class="nav-right nav-menu">
@@ -26,13 +25,40 @@
     </div>
 </nav>
 
-<iframe id = "mode" src=""></iframe>
-<button id = "status" type="button" class="button "></button>
+<div style="margin-right: 10%; margin-left: 10%; margin-top: 5%;border: solid black 4px;">
+    <h2 id = "title"></h2>
+    <p id ="desp"></p>
+    <p id ="desp"></p>
+
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th><abbr title="">URL</abbr></th>
+            <th><abbr title="">Remove</abbr></th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+
+<div style="margin-top: 3%">
+    <p class="control">
+        <input id="url" class="input" type="text" placeholder="New Url">
+    </p>
+</div>
+
+<button id="addurl" type="button" class="button is-small ">Add</button>
+
+<button style="margin: 20%" id = "status" type="button" class="button is-large "></button>
 
 
 
 
 
 </body>
+<script src="../js/mode.js"></script>
 <script src="../js/popup.js"></script>
 </html>
