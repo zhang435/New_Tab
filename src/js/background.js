@@ -7,6 +7,16 @@ function print(s) {
     bkg.console.log(s);
 }
 
+// check if there exist a url in the array
+Array.prototype.start_with =  function (val) {
+
+    for(var i = 0; i< this.length;++i){
+        if(val.startsWith(this[i]))
+            return true;
+    }
+    return false;
+};
+
 //get nav mode
 chrome.storage.sync.get("mode", function(items) {
     print("?");
@@ -45,15 +55,23 @@ var prev = "";
 // when user realod the page
 var prevtabid = "";
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-    print("prevtabs is" + prevtabid);
-    print("current id is" + tabId);
     if (changeInfo.status === 'complete' && (!(prev === tab.url) || prevtabid === tabId)) {
-        print("prev link: " + prev);
         prev = tab.url;
         prevtabid = tabId;
         print("page success loaded");
         if(status === "running"){
-            listen_all_links();
+            print(mode);
+            chrome.storage.sync.get(mode , function (items) {
+                var blocked_urls = items[mode];
+                print(items[mode][0]);
+                print(blocked_urls + "!");
+                print(tab.url +"this is current url");
+                if(blocked_urls && blocked_urls.start_with(tab.url)){
+                    print("this url been prevent from happening " + tab.url);
+                }else{
+                    listen_all_links();
+                }
+            });
         }
     }
 });

@@ -73,23 +73,23 @@ var add  = document.getElementById("addurl");
 add.addEventListener("click",function (elem) {
     var new_url = document.getElementById("url").value;
 
-    // get prev value
     chrome.storage.sync.get(currentmode, function(items) {
         // chrome.storage.sync.clear();
         var ans = {};
 
         // if the item has not been create yet
         if (items[currentmode] ===  undefined){
-            // by doing this , we can sue variable as the key
+            // by doing this , we can sure variable as the key
             ans[currentmode] = [new_url];
-            chrome.storage.sync.get(currentmode);
+            chrome.storage.sync.set(ans);
             return;
         }
 
         // add new url
-        items[currentmode].push(new_url);
-        ans[currentmode] = items[currentmode];
-
+        var temp = items[currentmode];
+        temp.push(new_url);
+        ans[currentmode] = temp;
+        bkg.print(ans);
         chrome.storage.sync.set(ans, function () {
             bkg.print("append value " +new_url+ " into "+ currentmode +" URL array");
         });
