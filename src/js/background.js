@@ -7,23 +7,28 @@ function print(s) {
     bkg.console.log(s);
 }
 
+// check if there exist a url in the array
+Array.prototype.start_with =  function (val) {
+
+    for(var i = 0; i< this.length;++i){
+        if(val.startsWith(this[i]))
+            return true;
+    }
+    return false;
+};
+
 //get nav mode
 chrome.storage.sync.get("mode", function(items) {
     print("?");
     if (items.mode) {
-        print("in get right before " + mode);
         mode = items.mode;
-        print("right after " + mode);
     }else{
-        chrome.storage.sync.set({ "mode" : "XOR" }, function() {
-            mode = "XOR";
+        chrome.storage.sync.set({ "mode" : "OR" }, function() {
+            mode = "OR";
         });
     }
+    print(mode);
 });
-
-print("!" + mode);
-
-
 
 // add listener to all event
 var listen_all_links = function () {
@@ -44,14 +49,37 @@ var remove_listener = function () {
 };
 
 // active listner when page is laoded
+// the reason for prev is because we updated will run everytime when each frame been load
+// so mutiplte tabs will open , to prevent this, we need to make sure we do not open already opened tab
 var prev = "";
+// when user realod the page
+var prevtabid = "";
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-    if (changeInfo.status === 'complete' && !(prev === tab.url)) {
-        print("prev link" + prev);
+    if (changeInfo.status === 'complete' && (!(prev === tab.url) || prevtabid === tabId)) {
         prev = tab.url;
+        prevtabid = tabId;
         print("page success loaded");
         if(status === "running"){
-            listen_all_links();
+            print(mode);
+            chrome.storage.sync.get(mode , function (items) {
+                var urls = items[mode];
+                // only run the code for url in the list
+                if(mode === "OR"){
+                    if(urls && urls.start_with(tab.url))
+                        listen_all_links();
+
+                }else if(mode === "XOR"){
+                    if(blocked_urls && blocked_urls.start_with(tab.url)){
+                        print("this url been prevent from happening " + tab.url);
+                        return;
+                    }else{
+                        listen_all_links();
+                    }
+                }else{
+                    //listen all links
+                    listen_all_links();
+                }
+            });
         }
     }
 });
