@@ -5,7 +5,8 @@ btn.innerHTML = bkg.status;
 var modecontent = {
     "OR": "New tab will only `run` the link you want",
     "XOR": "New tab will NOT `run` the link you add",
-    "ALL": "New tab will `run` EVERYTHING"
+    "ALL": "New tab will `run` EVERYTHING",
+
 };
 var mode = new Mode(currentmode, modecontent[currentmode]);
 
@@ -17,12 +18,17 @@ if (!document.getElementById(currentmode).classList.contains("is-active")) {
 }
 
 // assign the mode content
-mode.fill_html();
 
-//////////////////////////////////////
-// check if the back memory been inited yet
-// if it been init , then it eill get coorect mode
-// if it is the first time using it, it will be the default XOR mode
+function draw_urls() {
+    chrome.storage.sync.get(currentmode, function (items) {
+        bkg.print(items);
+        bkg.print(items[currentmode]);
+        mode.fill_html(items[currentmode]);
+    });
+}
+draw_urls();
+
+
 Array.from(document.getElementsByTagName("a")).forEach(function (element) {
     element.addEventListener("click", function () {
         document.getElementById(currentmode).classList.remove("is-active");
@@ -33,11 +39,17 @@ Array.from(document.getElementsByTagName("a")).forEach(function (element) {
             currentmode = bkg.mode;
             console.log("update mode : " + element.innerHTML);
             mode = new Mode(currentmode, modecontent[currentmode]);
-            mode.fill_html()
+            draw_urls();
         });
     });
 });
 
+// chrome.storage.sync.get(currentmode, function(items) {
+//     var urls = items[currentmode];
+//     for(var i = 0; i < urls.length; ++i) {
+//         add_row(urls[i], i);
+//     }
+// });
 bkg.print(mode.src);
 
 
@@ -71,27 +83,41 @@ btn.classList.add(btn.innerHTML === "running" ? "is-primary" : "is-warning");
 // get the new link that will be added
 var add  = document.getElementById("addurl");
 add.addEventListener("click",function (elem) {
+
     var new_url = document.getElementById("url").value;
+    document.getElementById("url").value = "";
 
     chrome.storage.sync.get(currentmode, function(items) {
-        // chrome.storage.sync.clear();
+        if(new_url === "")
+            return;
         var ans = {};
-
         // if the item has not been create yet
         if (items[currentmode] ===  undefined){
             // by doing this , we can sure variable as the key
             ans[currentmode] = [new_url];
             chrome.storage.sync.set(ans);
-            return;
+        }else {
+            // add new url
+            var temp = items[currentmode];
+            if (temp.includes(new_url))
+                return;
+            temp.push(new_url);
+            ans[currentmode] = temp;
+            bkg.print("call function add row");
         }
-
-        // add new url
-        var temp = items[currentmode];
-        temp.push(new_url);
-        ans[currentmode] = temp;
-        bkg.print(ans);
-        chrome.storage.sync.set(ans, function () {
-            bkg.print("append value " +new_url+ " into "+ currentmode +" URL array");
-        });
+            add_row(new_url,ans.length);
+            chrome.storage.sync.set(ans, function () {
+                bkg.print("append value " +new_url+ " into "+ currentmode +" URL array");
+            });
     });
 });
+
+//////////////////////////////////////////////////////////////////////
+// add new table into popup.html
+function add_row(url,new_id){
+    var tb = document.getElementsByTagName("tbody")[0];
+    var new_row = document.createElement("tr");
+    new_row.setAttribute("id" ,new_id);
+    new_row.innerHTML = url;
+    tb.appendChild(new_row);
+}

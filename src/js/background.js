@@ -62,13 +62,21 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
         if(status === "running"){
             print(mode);
             chrome.storage.sync.get(mode , function (items) {
-                var blocked_urls = items[mode];
-                print(items[mode][0]);
-                print(blocked_urls + "!");
-                print(tab.url +"this is current url");
-                if(blocked_urls && blocked_urls.start_with(tab.url)){
-                    print("this url been prevent from happening " + tab.url);
+                var urls = items[mode];
+                // only run the code for url in the list
+                if(mode === "OR"){
+                    if(urls && urls.start_with(tab.url))
+                        listen_all_links();
+
+                }else if(mode === "XOR"){
+                    if(blocked_urls && blocked_urls.start_with(tab.url)){
+                        print("this url been prevent from happening " + tab.url);
+                        return;
+                    }else{
+                        listen_all_links();
+                    }
                 }else{
+                    //listen all links
                     listen_all_links();
                 }
             });
