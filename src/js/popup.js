@@ -28,7 +28,7 @@ function draw_urls() {
 }
 draw_urls();
 
-
+// dealing with different mode
 Array.from(document.getElementsByTagName("a")).forEach(function (element) {
     element.addEventListener("click", function () {
         document.getElementById(currentmode).classList.remove("is-active");
@@ -41,6 +41,7 @@ Array.from(document.getElementsByTagName("a")).forEach(function (element) {
             mode = new Mode(currentmode, modecontent[currentmode]);
             draw_urls();
         });
+        chrome.runtime.sendMessage({text: "mode_change", status: btn.innerHTML});
     });
 });
 
@@ -79,7 +80,7 @@ btn.addEventListener("click", function () {
 btn.classList.add(btn.innerHTML === "running" ? "is-primary" : "is-warning");
 
 
-//////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
 // get the new link that will be added
 var add  = document.getElementById("addurl");
 add.addEventListener("click",function (elem) {
@@ -110,6 +111,7 @@ add.addEventListener("click",function (elem) {
                 bkg.print("append value " +new_url+ " into "+ currentmode +" URL array");
             });
     });
+    bkg.rerun();
 });
 
 //////////////////////////////////////////////////////////////////////

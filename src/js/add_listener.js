@@ -3,19 +3,17 @@
  **/
 var links = document.querySelectorAll("a");
 for (var index = 0; index < links.length; index++) {
-    var org = "";
-    if (links[index].hasAttribute("target")) {
-        org = links[index].target;
-    }
-
+    console.log("???");
     if (!links[index].hasAttribute("target")) {
         links[index].setAttribute("target", "_blank");
+        links[index].setAttribute("data-changed" ,"");
     } else {
-        if (!links[index].target !== "_blank") {
+        if (!links[index].getAttribute("target") !== "_blank") {
+            links[index].setAttribute("data-changed" , links[index].getAttribute("target"));
             links[index].setAttribute("target", "_blank");
         }
     }
-    links[index].setAttribute("data-org", org);
+
 }
 
 console.log(String(links.length) + " links been listened");
