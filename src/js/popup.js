@@ -122,6 +122,7 @@ function add_row(url, new_id) {
     url_name.addEventListener("click", function (e) {
         bkg.print("been clicked");
         remove_url_from_table(url);
+        bkg.rerun();
     });
     tb.appendChild(url_name);
 
