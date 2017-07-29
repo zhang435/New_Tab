@@ -141,8 +141,4 @@ function remove_url_from_table(url){
     });
 
     document.getElementById(url).parentNode.removeChild(document.getElementById(url));
-
-
-
-
 }
