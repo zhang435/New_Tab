@@ -8,21 +8,16 @@ function print(s) {
 }
 
 // check if there exist a url in the array
-Array.prototype.start_with =  function (val) {
+Array.prototype.start_with = function (val) {
     return this.some(url => val.startsWith(url));
-    // for(var i = 0; i< this.length;++i){
-    //     if(val.startsWith(this[i]))
-    //         return true;
-    // }
-    // return false;
 };
 
 //get nav mode
-chrome.storage.sync.get("mode", function(items) {
+chrome.storage.sync.get("mode", function (items) {
     if (items.mode) {
         mode = items.mode;
-    }else{
-        chrome.storage.sync.set({ "mode" : "OR" }, function() {
+    } else {
+        chrome.storage.sync.set({"mode": "OR"}, function () {
             mode = "OR";
         });
     }
@@ -53,17 +48,17 @@ function active_mode(tab) {
     chrome.storage.sync.get(mode, function (items) {
         var urls = items[mode];
         // only run the code for url in the list
-        if(mode === "OR"){
-            if(urls && urls.start_with(tab.url))
+        if (mode === "OR") {
+            if (urls && urls.start_with(tab.url))
                 listen_all_links();
-        }else if(mode === "XOR"){
-            if(urls && urls.start_with(tab.url)){
+        } else if (mode === "XOR") {
+            if (urls && urls.start_with(tab.url)) {
                 print("this url been prevent from happening " + tab.url);
                 return;
-            }else{
+            } else {
                 listen_all_links();
             }
-        }else{
+        } else {
             //listen all links
             listen_all_links();
         }
@@ -77,17 +72,17 @@ function active_mode(tab) {
 var prev = "";
 // when user realod the page
 var prevtabid = "";
-chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
     if (changeInfo.status === 'complete' && (!(prev === tab.url) || prevtabid === tabId)) {
         prev = tab.url;
         prevtabid = tabId;
-        if(status === "running")
+        if (status === "running")
             active_mode(tab);
     }
 });
 
 // change the status of popup.html
-chrome.runtime.onMessage.addListener(function(message,sender,sendResponse) {
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     print("change status to " + status);
     if (message.text === "popup clicked") {
         status = message.status;

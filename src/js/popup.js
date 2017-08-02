@@ -18,8 +18,6 @@ if (!document.getElementById(currentmode).classList.contains("is-active")) {
 // assign the mode content
 function draw_urls() {
     chrome.storage.sync.get(currentmode, function (items) {
-        bkg.print(items);
-        bkg.print(items[currentmode]);
         mode.fill_html(items[currentmode]);
     });
 }
@@ -41,17 +39,9 @@ Array.from(document.getElementsByTagName("a")).forEach(function (element) {
         chrome.runtime.sendMessage({text: "mode_change", status: btn.innerHTML});
     });
 });
-
-// chrome.storage.sync.get(currentmode, function(items) {
-//     var urls = items[currentmode];
-//     for(var i = 0; i < urls.length; ++i) {
-//         add_row(urls[i], i);
-//     }
-// });
 bkg.print(mode.src);
 
-
-//////////////////////////////////
+//////////////////////////////////////////////////////////////////////
 // dealing with running/suspend button
 bkg.print("current status is " + btn.innerHTML);
 btn.addEventListener("click", function () {
@@ -117,7 +107,7 @@ function add_row(url, new_id) {
     var tb = document.getElementsByTagName("tbody")[0];
     var url_name = document.createElement("tr");
     url_name.setAttribute("id", url);
-    url_name.innerHTML = "<a>"+url+"</a>";
+    url_name.innerHTML = "<a>" + url + "</a>";
     bkg.print("in");
     url_name.addEventListener("click", function (e) {
         bkg.print("been clicked");
@@ -131,10 +121,10 @@ function add_row(url, new_id) {
     // remove_button.innerHTML = "<a></a>";
 }
 
-function remove_url_from_table(url){
-    chrome.storage.sync.get(currentmode,function (items) {
+function remove_url_from_table(url) {
+    chrome.storage.sync.get(currentmode, function (items) {
         var index = items[currentmode].indexOf(url);
-        items[currentmode].splice(index,1);
+        items[currentmode].splice(index, 1);
         var ans = {};
         ans[currentmode] = items[currentmode];
         chrome.storage.sync.set(ans);

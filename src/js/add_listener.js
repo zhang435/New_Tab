@@ -3,8 +3,7 @@
  **/
 var links = document.querySelectorAll("a");
 for (var index = 0; index < links.length; index++) {
-    console.log("???");
-    if (!links[index].hasAttribute("target")) {
+    if (!links[index].hasAttribute("onlick")) {
         links[index].setAttribute("target", "_blank");
         links[index].setAttribute("data-changed" ,"");
     } else {

@@ -1,10 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>goosd</title>
-</head>
+<html>
 <body>
-thisis content1
+
+<p>Click the button to trigger a function that will output "Hello World" in a p element with id="demo".</p>
+
+<a id = "x" onclick="myFunction()">Click me</a>
+
+<p id="demo"></p>
+
+<script>
+    function myFunction() {
+        var x =  document.getElementById("x");
+        alert(x.getAttribute("onclick"));
+    }
+</script>
+
 </body>
 </html>
