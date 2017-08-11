@@ -87,7 +87,8 @@ function add_row(url, new_id) {
     var tb = document.getElementsByTagName("tbody")[0];
     var url_name = document.createElement("tr");
     url_name.setAttribute("id", url);
-    url_name.innerHTML = "<a>" + url + "</a>";
+    url_name.innerHTML = "<td><a>" + url + "</a></td>" +
+        "<td><i class='material-icons button edit'>delete</i></td>";
     tb.appendChild(url_name);
 
     url_name.addEventListener("click", function (e) {

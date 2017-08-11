@@ -6,39 +6,40 @@
 
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.2/css/bulma.min.css">
-
+    <link rel="stylesheet" href="../css/custom.css">
 </head>
-<body style="width:400px;">
+<body style="width:600px;">
 
 <nav class="nav has-shadow">
     <div class="container">
         <div class="nav-left">
             <p style="width: 5%" class="nav-item">&nbsp</p>
             <p style="width: 5%" class="nav-item">&nbsp</p>
-            <a id="OR" style="font-size: medium" class="nav-item is-tab ">OR</a>
-            <a id="XOR" style="font-size: medium" class="nav-item is-tab">XOR</a>
-            <a id="ALL" style="font-size: medium" class="nav-item is-tab ">ALL</a>
+            <a id="OR" style="font-size: medium; margin-left: 15px" class="nav-item is-tab ">OR</a>
+            <a id="XOR" style="font-size: medium;  margin-left: 15px" class="nav-item is-tab">XOR</a>
+            <a id="ALL" style="font-size: medium;  margin-left: 15px" class="nav-item is-tab ">ALL</a>
         </div>
         <div class="nav-right nav-menu">
         </div>
     </div>
 </nav>
 
-<div style="margin-right: 10%; margin-left: 10%; margin-top: 5%;border: solid black 4px;">
+<div style="margin-left: 20px; margin-top: 5%;border: solid black 4px;">
     <h2 id="title"></h2>
     <p id="desp"></p>
     <p id="desp"></p>
 
-
-    <table class="table">
+    <table>
         <thead>
         <tr>
-            <th><abbr title="">URL</abbr></th>
-            <th><abbr title="">Remove</abbr></th>
+            <th colspan="3">Url List</th>
+        </tr>
+        <tr>
+            <th colspan="2">Urls</th>
         </tr>
         </thead>
-        <tbody>
 
+        <tbody>
         </tbody>
     </table>
 </div>
@@ -48,9 +49,10 @@
     <p class="control">
         <input id="url" class="input" type="text" placeholder="New Url">
     </p>
+    <button id="addurl" type="button" class="button is-small "  style="margin-top: 5px">Add</button>
 </div>
 
-<button id="addurl" type="button" class="button is-small ">Add</button>
+
 
 <button style="margin: 20%" id="status" type="button" class="button is-large "></button>
 
