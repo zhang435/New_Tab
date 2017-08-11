@@ -9,7 +9,7 @@ function print(s) {
 
 // check if there exist a url in the array
 Array.prototype.start_with = function (val) {
-    return this.some(url => val.startsWith(url));
+    return this.some(url => (val.startsWith(url) || url.startsWith(val)));
 };
 
 //get nav mode
@@ -97,5 +97,46 @@ function rerun() {
         remove_listener();
         active_mode(tab);
     });
-
 }
+
+// show the url
+function chrome_print_urls(){
+    chrome.storage.sync.get(mode, function (items) {
+        var urls = [];
+        if(items[mode] !== undefined)
+            urls = items[mode];
+        chrome.extension.getBackgroundPage().console.log(urls);
+    });
+}
+// add url into urls
+function chrome_add_url(url){
+    chrome.storage.sync.get(mode, function (items) {
+        var urls = [];
+
+        if(items[mode] !== undefined)
+            urls = items[mode];
+        if(!urls.start_with(url)){
+            urls.push(url);
+            var ans = {};
+            ans[mode] = urls;
+            chrome.storage.sync.set(ans);
+        }
+    });
+}
+
+// remove url from urls
+function chrome_remove_url(url){
+    chrome.storage.sync.get(mode, function (items) {
+        var urls = [];
+        if(items[mode] !== undefined)
+            urls = items[mode];
+        urls.splice(urls.indexOf(url), 1);
+        var ans = {};
+        ans[mode] = urls;
+        chrome.storage.sync.set(ans);
+    });
+}
+
+
+
+
