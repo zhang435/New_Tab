@@ -10,9 +10,9 @@
 </head>
 <body style="width:600px;">
 
-<nav class="nav has-shadow">
+<nav  class="nav has-shadow">
     <div class="container">
-        <div class="nav-left">
+        <div style="margin-left: 20%" class="nav-left">
             <p style="width: 5%" class="nav-item">&nbsp</p>
             <p style="width: 5%" class="nav-item">&nbsp</p>
             <a id="OR" style="font-size: medium; margin-left: 15px" class="nav-item is-tab ">OR</a>
@@ -24,7 +24,7 @@
     </div>
 </nav>
 
-<div style="margin-left: 20px; margin-top: 5%;border: solid black 4px;">
+<div id = "container" style="margin-left: 20px; margin-top: 5%;border: solid black 4px;">
     <h2 id="title"></h2>
     <p id="desp"></p>
     <p id="desp"></p>
@@ -38,23 +38,24 @@
             <th colspan="2">Urls</th>
         </tr>
         </thead>
-
         <tbody>
         </tbody>
     </table>
+
+    <div style="margin-top: 3%">
+        <p class="control">
+            <input id="url" class="input" type="text" placeholder="New Url">
+        </p>
+        <button id="addurl" type="button" class="button"  style="margin-top: 5px">Add</button>
+    </div>
 </div>
 
 
-<div style="margin-top: 3%">
-    <p class="control">
-        <input id="url" class="input" type="text" placeholder="New Url">
-    </p>
-    <button id="addurl" type="button" class="button is-small "  style="margin-top: 5px">Add</button>
-</div>
 
 
 
-<button style="margin: 20%" id="status" type="button" class="button is-large "></button>
+
+<button style="margin-left: 40%;margin-bottom: 20px" id="status" type="button" class="button is-large "></button>
 
 
 </body>

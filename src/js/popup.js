@@ -37,6 +37,12 @@ Array.from(document.getElementsByTagName("a")).forEach(function (element) {
             mode = new Mode(currentmode, modecontent[currentmode]);
             populate_urls();
         });
+
+        // hide box when it is mode
+        if(element.innerHTML === "ALL")
+            document.getElementById("container").style.display = "none";
+        else
+            document.getElementById("container").style.display = "block";
         chrome.runtime.sendMessage({text: "mode_change", status: btn.innerHTML});
     });
 });
@@ -91,7 +97,8 @@ function add_row(url, new_id) {
         "<td><i class='material-icons button edit'>delete</i></td>";
     tb.appendChild(url_name);
 
-    url_name.addEventListener("click", function (e) {
+    url_name.getElementsByTagName("i")[0]
+        .addEventListener("click", function (e) {
         remove_url_from_table(url);
         bkg.rerun();
     });
@@ -106,7 +113,7 @@ function remove_url_from_table(url) {
         ans[currentmode] = items[currentmode];
         chrome.storage.sync.set(ans);
     });
-    document.getElementById(url).parentNode.removeChild(document.getElementById(url));
+    document.getElementById(url).remove();
 }
 
 
