@@ -10,12 +10,14 @@ again.
 
 I made three different mode base on user preference
 
+
+Quick note, If you want , hold contorl/command will open the link in the new tab..
 ## OR
 Or mode enable user to add link into the table, *New_Tab* will only
 run the url with the domain
 
 Example:
-if you add **www.github.com** into table, all the link in apple.com
+if you add **www.github.com** into table, all the link in github.com
 will open in the new tab. Also, All the page under www.github.com/*** will
 open in the new tab as well.
 
